@@ -70,6 +70,14 @@ def _ok2():
   assert 1==1, "equality failure"
 
 @ok
+def _ok3():
+  "Student grade test!"
+  student = { "effort": "much",
+	      "grade": "A+"
+	    }
+  assert student["grade"] == "A+"
+
+@ok
 def _any3():
   """There are 2600 three letter alphanet combinations.
      So if we pick just 10, there should be no repeats."""
