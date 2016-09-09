@@ -10,10 +10,14 @@ def has_duplicates(stuff):
                 return True
     return False
 
-random.seed(1)
-bdays = [None] * 23
-for x in xrange(len(bdays)):
-    bdays[x] = random.randint(1,365)
+count = 0
+trials = 100
 
-print bdays
-print has_duplicates(bdays)
+for x in range(trials):
+    bdays = [None] * 23
+    # put random bdays in list
+    for x in xrange(len(bdays)):
+    	bdays[x] = random.randint(1,365)
+    if has_duplicates(bdays): count += 1
+
+print "Prob bday 23 ppl: " + str(float(count)/trials)
