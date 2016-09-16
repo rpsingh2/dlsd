@@ -18,19 +18,25 @@ def P(old, new, t):
     return ans
 
 def neighbor(x, dev, min_x, max_x):
-    new_x = x + random.randint( (-1 * dev), dev);
+    new_x = x + random.randint((-1 * dev), dev);
     while new_x < min_x or new_x > max_x:
 	new_x = x + random.randint( (-1 * dev), dev);
     return new_x
 
+def set_str_size(string, n):
+    while len(string) < n:
+        string = string + " "
+    return string
+
 #random.seed(1)
-max_trials = 10000
-t = 0
+max_trials = 5000
+t = emax =0
 best_energy = energy = 1 #set to max en level
-emax = 0
-best_x = 0
-current_x = start_x = random.randint(-100000, 100000)
-while t < max_trials: #and energy > emax:
+best_x = current_x = start_x = random.randint(-100000, 100000)
+
+print "Starting x_: " + str(current_x)
+
+while t < max_trials and energy > emax:
     new_x = neighbor(current_x, 1000, -100000, 100000)
     t += 1
     f1 = new_x ** 2
@@ -40,8 +46,6 @@ while t < max_trials: #and energy > emax:
     
     rand = random.random();
     p_power = P(energy, new_energy, float(t)/max_trials)
-    #print "Energy " + str(energy) + " " + str(new_energy)
-    #print "Condition " + str(p_power) + " " + str(rand)
     if new_energy < best_energy:
         best_x = current_x = new_x
         best_energy = energy = new_energy
@@ -51,16 +55,12 @@ while t < max_trials: #and energy > emax:
         energy = new_energy
     	say("+")
     elif P(energy, new_energy, float(t)/max_trials) < random.random():
-    #elif p_power >= rand:
 	current_x = new_x
 	energy = new_energy
 	say("?") 
     say(".")
     #print current_x
     print_en = str(round(energy,9))
-    while len(print_en) < 12:
-	print_en = print_en + " "
-    print_en = print_en + "|"
-    if t % 50 == 0: say("\n"+print_en)
+    if t % 50 == 0: say("\n" + set_str_size(print_en, 12) + "|")
 
-print "best results: x="+str(best_x)+" energy="+str(best_energy)
+print "\n\nbest results: x="+str(best_x)+" energy="+str(best_energy)
