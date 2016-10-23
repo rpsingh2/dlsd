@@ -1,11 +1,11 @@
 #HW 5 Paper from 2013
 
-#Refrence:
+###Refrence:
 A. MacHiry, R. Tahiliani, and M. Naik. Dynodroid: An input
 generation system for android apps. Technical report,
 Program Analysis Group, Georgia Tech, 2012.
 
-#Keywords:
+###Keywords:
 ***1)*** Black-box: A system in which input is inserted, and an output can be viewed. How the output is formed from the input is not known.
 
 ***2)*** Automated: A system in which manual effort is not required. More efficient and less time consuming than manual processes.
@@ -14,5 +14,8 @@ Program Analysis Group, Georgia Tech, 2012.
 
 ***4)*** Model-based Testing: Uses map of GUI elements to determine what to test. 
 
-*Paper Contents
-***1.2. Assume someone else will summon the Authorities***: One should not assume that someone else would have reported the shootout to the Authorities and called for help. They should themselves take responsibility and reach out to proper Authorities and provide concise and complete information in order to help them deliver better response.
+###Paper Contents
+***1)*** Motivational Statments: 
+***4)*** Related Work: Mentions several other android testing frameworks that Dynodroid either uses or is comparing itself against.
+***5)*** Commentary: Includes two sections of pusdocode that detail how two different algorithms opperate.
+***8)*** Informative Visualizations: Latter half of the paper includes several visualizations. Some visualizations display state transitions or dataflow. The Second to last page contains several graphs dealing with code coverage.
