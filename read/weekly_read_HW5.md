@@ -7,8 +7,11 @@ Program Analysis Group, Georgia Tech, 2012.
 
 #Keywords:
 ***1)*** Black-box: A system in which input is inserted, and an output can be viewed. How the output is formed from the input is not known.
+
 ***2)*** Automated: A system in which manual effort is not required. More efficient and less time consuming than manual processes.
+
 ***3)*** Systematic Testing: Testig by executing unique program paths. Costly and difficult to scale as a result of path explosion problem.
+
 ***4)*** Model-based Testing: Uses map of GUI elements to determine what to test. 
 
 *Paper Contents
