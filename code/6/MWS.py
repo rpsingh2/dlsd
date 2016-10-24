@@ -22,16 +22,8 @@ class MWS(Optimizer):
                 dec_num = random.randint(0, len(current_model.decisions) - 1)
                 dec_min = new_model.decisions[dec_num]['min']
                 dec_max = new_model.decisions[dec_num]['max']
-                sub_size = int((dec_max - dec_min) / 5)
-                subrange = xrange(current_model.decisions[dec_num]['value'] - sub_size,
-                                  current_model.decisions[dec_num]['value'] + sub_size)
-                if subrange[0] < current_model.decisions[dec_num]['min']:
-                    subrange = xrange(current_model.decisions[dec_num]['min'],
-                                      current_model.decisions[dec_num]['min'] + sub_size)
-                if subrange[-1] > current_model.decisions[dec_num]['max']:
-                    subrange = xrange(current_model.decisions[dec_num]['max'] - sub_size,
-                                      current_model.decisions[dec_num]['max'])
-                for x in subrange:
+                
+                for x in xrange(dec_min, dec_max):
                     current_model.decisions[dec_num]['value'] = x
                     if not current_model.ok(): continue
                     if best_model.energy > new_model.energy:
