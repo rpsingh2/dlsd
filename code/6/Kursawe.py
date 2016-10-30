@@ -27,6 +27,10 @@ class Kursawe(Model):
     def calcEnergy(self):
         self.energy = self.f1() + self.f2()
 
+    def getEnergy(self):
+        self.calcEnergy()
+        return self.energy
+
     def neighbor(self):
         for dec in self.decisions:
             current_position = dec['value']

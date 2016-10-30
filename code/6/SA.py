@@ -13,7 +13,7 @@ class SA(Optimizer):
 
     def mainLoop(self, model):
         t = 1
-        t_max = 100000
+        t_max = 1000000
         new_model = copy.deepcopy(model)
         current_model = copy.deepcopy(model)
         best_model = copy.deepcopy(model)
@@ -29,7 +29,7 @@ class SA(Optimizer):
                 current_model = copy.deepcopy(new_model)
                 current_model.decisions = copy.deepcopy(new_model.decisions)
             t += 1
-        print best_model.decisions
-        print best_model.energy
+        print "Best decisions: " + str([str(dec['value']) for dec in best_model.decisions])
+        print "Best energy:    " + str(best_model.energy)
     def __init__(self, model):
         self.mainLoop(model)    

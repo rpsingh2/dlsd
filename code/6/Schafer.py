@@ -13,6 +13,10 @@ class Schafer(Model):
         f2 = (self.decisions[0]['value'] - 2) ** 2
         self.energy = f1 + f2
 
+    def getEnergy(self):
+        self.calcEnergy()
+        return self.energy
+
     def neighbor(self):
         current_position = self.decisions[0]['value']
         new_position = current_position + random.randint(-100, 100)

@@ -24,6 +24,10 @@ class Osyczka2(Model):
     def calcEnergy(self):
         self.energy = self.f1() + self.f2()
 
+    def getEnergy(self):
+        self.calcEnergy()
+        return self.energy
+
     def neighbor(self):
         r_dec = random.randint(0,5)
         current_position = self.decisions[r_dec]['value']
