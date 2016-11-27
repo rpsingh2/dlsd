@@ -4,7 +4,7 @@ import sys; sys.dont_write_bytecode = True
 import math, random
 
 
-class DTLZ1:
+class DTLZ1(object):
     name = "DTLZ1"
     def __init__(self, num_objectives, num_decisions):
         self.name = "DTLZ1"

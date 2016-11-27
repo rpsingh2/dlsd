@@ -1,12 +1,21 @@
+from __future__ import print_function
 import sys
 import operator
-from collections import defaultdict
 import numpy as np
 
-from fastNDOM import fast_nondominated_sort as fastNdom
 
+from fastNDOM import fast_nondominated_sort as fastNdom
 from a12 import a12
 from DTLZ1 import *
+
+def say(*lst):
+    """
+    Print without going to new line
+    :param lst:
+    """
+    print(*lst, end="")
+    sys.stdout.flush()
+
 
 class GA:
     def __init__(self, model, dominator='bdom', num_candidates=100, num_generations=1000, mutation_prob=0.05):
@@ -20,6 +29,28 @@ class GA:
         self.frontier_new = []
         self.base_frontier = []
         self.dominator = self.bdom if dominator == 'bdom' else self.cdom;
+
+    def cdom(x, y, abouts):
+        def w(better):
+            def less(x, y): return x < y
+            return -1 if better == less else 1
+
+        def expLoss(w, x1, y1, n):
+            return -1 * math.e ** (w * (x1 - y1) / n)
+
+        def loss(x, y):
+            losses = []
+            n = min(len(x), len(y))
+            for obj in range(x):
+                x1, y1 = x[obj], y[obj]
+                losses += [expLoss(w(obj.want), x1, y1, n)]
+            return sum(losses) / n
+
+        x = model.function_value(x, model.num_decisions, model.num_objectives)
+        y = model.function_value(y, model.num_decisions, model.num_objectives)
+        l1 = loss(x, y)
+        l2 = loss(y, x)
+        return l1 < l2
 
     def bdom(self, x, y):
         """
@@ -152,15 +183,19 @@ class GA:
 
         box = [model.random_decs() for _ in range(self.num_candidates)]
 
+        tests = []
+
         self.frontier = box
         max_vector, min_vector = self.min_max(box)
 
+        '''Generation'''
         for i in range(self.num_generations):
-            sys.stdout.write("\rGeneration: " + str(i))
-            sys.stdout.flush()
+            say(".")
+            #sys.stdout.write("\rGeneration: " + str(i))
+            #sys.stdout.flush()
             newbox = []
 
-            '''Generation'''
+            '''Candidate Generation'''
             for j in range(self.num_candidates):
                 sample = np.random.randint(0, len(self.frontier), size=2)
                 child_1 = []
@@ -181,14 +216,7 @@ class GA:
 
             '''Selection of the fitttest'''
             self.frontier_new = []
-
-            # n = time.time()
-            # print "elapsed time: " + str(n-t)
-            # nsga_front = self.fast_nondominated_sort(newbox)
-            # nsga_front = self.sortNondominated(newbox, self.num_candidates, self.dominator)
-            #self.frontier_new = self.elitism(newbox, self.dominator, self.num_candidates)
-
-            self.frontier_new = fastNdom(newbox, self.bdom, self.num_candidates)
+            self.frontier_new = fastNdom(newbox, self.dominator, self.num_candidates)
             self.lives += self.penalize_lives()
 
             '''Early termination'''
@@ -200,30 +228,32 @@ class GA:
 
         '''Best frontier and hypervolume'''
         hv = self.hypervolume(min_vector, max_vector)
+
         return [hv, i]
 
 
 if __name__ == '__main__':
 
     models = [DTLZ1]
-    dom_method = ['bdom', 'cdom']
+    dom_methods = ['bdom', 'cdom']
     objectives = [2]#, 4, 6, 8]
     decisions = [10]#, 20, 40]
     baseline = 20
+    for dom_method in dom_methods:
+        for model_type in models:
+            print('**Optimizing**', model_type, ' ', dom_method)
+            print('--------Baseline Study for :', baseline, 'simulations--------')
+            print('\n')
+            for decs in decisions:
+                for objs in objectives:
+                    print('Decisions : ', decs, 'Objectives: ', objs)
+                    result = []
+                    for i in range(baseline):
+                        model = model_type(objs, decs)
+                        result.append(GA(model).run(model))
+                        say("|")
 
-    for model_type in models:
-        print '**Optimizing**', model_type
-        print '--------Baseline Study for :', baseline, 'simulations--------'
-        print '\n'
-        for decs in decisions:
-            for objs in objectives:
-                print 'Decisions : ', decs, 'Objectives: ', objs
-                result = []
-                for i in range(baseline):
-                    model = model_type(objs, decs)
-                    result.append(GA(model).run(model))
-
-                print 'Mean Hypervolume: ', np.mean([result[_][0] for _ in range(len(result))])
-                print 'SD   Hypervolume: ', np.std([result[_][0] for _ in range(len(result))])
-                print 'Mean Generations: ', int(np.mean([result[_][1] for _ in range(len(result))]))
-                print '\n'
+                    print('Mean Hypervolume: ', np.mean([result[_][0] for _ in range(len(result))]))
+                    print('SD   Hypervolume: ', np.std([result[_][0] for _ in range(len(result))]))
+                    print('Mean Generations: ', int(np.mean([result[_][1] for _ in range(len(result))])))
+                    print('\n')

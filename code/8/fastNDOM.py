@@ -1,5 +1,31 @@
-from Population import Population
-from Individual import Individual
+class Population(object):
+    """Represents population - a group of Individuals,
+    can merge with another population"""
+
+    def __init__(self):
+        self.population = []
+        self.fronts = []
+
+    def __len__(self):
+        return len(self.population)
+
+    def __iter__(self):
+        """Allows for iterating over Individuals"""
+
+        return self.population.__iter__()
+
+    def extend(self, new_individuals):
+        """Creates new population that consists of
+        old individuals ans new_individuals"""
+        self.population.append(new_individuals)
+
+class Individual(object):
+    def __init__(self):
+        self.rank = None
+        self.dominated_solutions = set()
+        self.features = None
+        self.decisions = None
+        self.dominates = None
 
 def fast_nondominated_sort(pop, dominator, k):
     #getting initial fronts
