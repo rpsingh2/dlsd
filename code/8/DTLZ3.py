@@ -2,7 +2,7 @@ import math
 
 from problems.problem_definitions import ProblemDefinitions
 
-class DTLZ1Definitions(ProblemDefinitions):
+class DTLZ3Definitions(ProblemDefinitions):
 
     def __init__(self):
         self.n = 30
