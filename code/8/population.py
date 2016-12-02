@@ -1,7 +1,3 @@
-"""Module with main parts of NSGA-II algorithm.
-It contains population definition"""
-
-
 class Population(object):
     """Represents population - a group of Individuals,
     can merge with another population"""

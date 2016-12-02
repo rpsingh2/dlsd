@@ -1,6 +1,3 @@
-"""Module with main parts of NSGA-II algorithm.
-It contains individual definition"""
-
 class Individual(object):
     """Represents one individual"""
     
@@ -14,4 +11,3 @@ class Individual(object):
         
     def set_objectives(self, objectives):
         self.objectives = objectives
-        
