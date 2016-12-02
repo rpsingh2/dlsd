@@ -1,5 +1,3 @@
-"""Module with definition of ZDT problem interface"""
-
 from individual import Individual
 from problems import Problem
 import random
@@ -40,10 +38,7 @@ class DTLZ(Problem):
         self.problem_type = None
 
     def __dominates(self, individual2, individual1):
-        #if self.domination_type == "bdom":
         return bdom(individual1.objectives, individual2.objectives)
-        #if self.domination_type == "cdom":
-        #    return cdom(individual1.objectives, individual2.objectives)
 
     def generateIndividual(self):
         individual = Individual()
