@@ -1,4 +1,7 @@
-# Exploration of Early Termination using DTLZ model
+# Exploration of Early Termination using DTLZ7 model
+
+## Abstract
+The stopping conditions for optimizers are typically defined to be a set condition. This however can have negative effects on overall performance especially when using large models. It is worthile to explore different ending conditions that are not so static. While analyzing changes in the optimized solution during runtime, perhaps insight can be gained about appropriate conditions for early termination. The overall goal is to minimize computational time while maximizing the ammount of optimization done within the same timeframe.
 
 ## Introduction
 Within this section you will find a brief overview of the optimizers that were used in this experiment (DE, MWS, SA) as well as some descriptions of statistical comparators.
@@ -35,10 +38,13 @@ While has lives and has generations left
         local search soltuion better than best solution
 ```
 
+### Genetic Algorithm
+This otimiziation technique maintains a population of diffferent solutions while 
+
 ### Differential Evolution
 The most complicated and newest algorithm of the bunch. This is a type of Genetic Algorithm, meaning that a population of different solutions are maintained and evolved over time. This difference in the operation of Differential Evolution and the singe objective non-population driven optimizers had to be accounted for.
 
-In this experiment a population of 100 individuals were used. The crossover rate was set to 30% while the mutation factor was 75%.
+In this experiment a population of 100 individuals were used. The crossover rate was set to 30% while the mutation factor was 75%. The mutation scheme is DE/rand/1.
 ```
 While has generations left and has lives
 	Mutated population = Mutate(population)
@@ -90,6 +96,14 @@ end
 #### Type 3: Scott-Knott
 The Scott-Knot test is used for clustering results into similar categories. Scott-Knot recursively bi-clusters the output from each of the optimizers into ranks. At each level of ranks, another split is created where the expected values are the most different. Before continuing, Boostrap (random sampling) and A12 are called to check and see if the splits are significantly different.
 
+### Model: DTLZ7
+![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/images/dtlz7_Formulation.png)
+![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/images/dtlz7_paretoFront_big.png)
+DTLZ7 is a model created in order to test the potential for optimizers to find and maintain several distinct disjointed pareto-optimal solutions. As you can see, when using two objectives, x1 and x2, the pareto-optimal regions are spread out quite a bit. With DTLZ7 it is possible to implement the model using any number of objectives and any number of decisions.
+
+## Experimental Setup
+In order to explore this problem, three optimization techniques were used; Differeential Evolution, MaxWalkSat and Simulated Annealing. The model DTLZ7 was used for optimization. With this test, 10 decisions were used as input to the model we tried to minimize the output for two objectives. 20 Runs of each model were used and the results between cdom loss of the first population and the last population were recorded.
+
 ## Results
 
 ```
@@ -114,8 +128,11 @@ The bottom chart shows the overall change in the initial and ending population o
 
 ## Threats to Validity
 * It is possible that the setup for Max WalkSat and Simulated Annealing were suboptimal for this sort of comparison. Judging the performance of a population based method such as Differential Evolution to that of a simpler non Genetic Algorithm style problem could be explored more.
+
+## Future Work
 * Results for the above tests may change based on the type of model used. It is possible that Simulated Annealing or Max WalkSat preforms better on certain models than Differential Evolution does and vice-versa.
 * May need to investigate the final Hypervolume, Spread and IGD of the final values for each of the optimzers. It would make for an interesting comparison.
+* May be worthwile to expore the effects of using a Genetic Algorithm to optimize Simulated Annealing, Max WalkSat and Differential Evolution in order to compare the overall performance of optimized optimizers against oneanother.
 
 ## Refrences
-
+DTLZ7: http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php
