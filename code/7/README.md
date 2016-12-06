@@ -17,7 +17,7 @@ While has lives and has generations left
 ```
 
 ### Max-WalkSat
-Max-WalkSat is similar to Simulated Annealing, but does not have a cooling factor feature. Instead Max-WalkSat has a certain probability of preforming a local search while jumping around the globally. This also helps avoid local maxima and minima by exploring solutions within your current area.
+Max-WalkSat is similar to Simulated Annealing, but does not have a cooling factor feature. Instead Max-WalkSat has a certain probability of preforming a local search while jumping around the globally. This also helps avoid local maxima and minima by exploring solutions within the current area.
 
 ```
 While has lives and has generations left
@@ -38,10 +38,13 @@ While has lives and has generations left
 ### Differential Evolution
 The most complicated and newest algorithm of the bunch. This is a type of Genetic Algorithm, meaning that a population of different solutions are maintained and evolved over time. This difference in the operation of Differential Evolution and the singe objective non-population driven optimizers had to be accounted for.
 
+In this experiment a population of 100 individuals were used. The crossover rate was set to 30% while the mutation factor was 75%.
 ```
-
+While has generations left and has lives
+	Mutated population = Mutate(population)
+	Return n fittest from population
+	Save new population	
 ```
-
 
 ### Comparison Operators
 #### Type 1: BDOM
@@ -63,9 +66,11 @@ def bdom(one, two):
 
 #### Type 2: A12
 In order to judge the difference in improvement for each optimizer’s current and previous solutions, the A12 small effect comparison was used. A12 is used to determine the overall difference between two sets of numbers. A12 is used to measure the probability that running an algorithm using one set of numbers yields a higher result than running the same algorithm using the second set of numbers. According to Vargha and Delaney, the output from the A12 test can be viewed as such:
+
 -	A12 > 71% represents a large difference
 -	A12 > 64% represents a medium difference
 -	A12 =< 56% or less represents a small difference
+
 Within the optimizers we implemented, if A12 shows a small difference between the current solution and a candidate solution, the algorithm is assumed to be close to converting to a solution. As such, the optimizer is set to terminate earlier.
 
 ```
@@ -107,7 +112,10 @@ From the table above we can see that Simulated Annealing on average takes the mo
 
 The bottom chart shows the overall change in the initial and ending population objectives using CDOM. In with this measurement, the higher the value the better. As you can see, Differenetial Evolution ened up having on average the best result for CDOM loss.
 
-
-
 ## Threats to Validity
+* It is possible that the setup for Max WalkSat and Simulated Annealing were suboptimal for this sort of comparison. Judging the performance of a population based method such as Differential Evolution to that of a simpler non Genetic Algorithm style problem could be explored more.
+* Results for the above tests may change based on the type of model used. It is possible that Simulated Annealing or Max WalkSat preforms better on certain models than Differential Evolution does and vice-versa.
+* May need to investigate the final Hypervolume, Spread and IGD of the final values for each of the optimzers. It would make for an interesting comparison.
+
+## Refrences
 
