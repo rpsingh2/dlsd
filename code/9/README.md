@@ -7,9 +7,9 @@ Our DE that optimizes NSGA-II has the following parameters:
 * 30% Crossover Rate
 * 75% Mutation Factor
 * DE/rand/1 Mutation Scheme
-[Population and Generations were both set to low values. High values increase the runtime far too much]
 * Population: 10
 * Generations: 5
+[Population and Generations were both set to low values. High values increase the runtime far too much]
 
 ##Results:
 
@@ -48,8 +48,8 @@ Threats to Validity:
 
 Future Work:
 * From the results it appears that a higher Mutation Rate for a GA may have beneficial effect in terms of maximizing the hypervolume. 
-* Implementing some sort of simulated annealing inspired mutation rate where it is higher at the start of execution, and gets more tame over time
-*It would be interesting to see if that is the case for all models or if this is just one exception.
+..* Implementing some sort of simulated annealing inspired mutation rate where it is higher at the start of execution, and gets more tame over time
+..*It would be interesting to see if a higher Mutation Rate is beneficial in most models or if this is just one exception.
 * Implementing code in a threaded fashion to allow for quicker runtimes is really a must. Waiting for even a relatively small run of the DE is painfully slow.
 * Implementing all other DTLZ models and comparing the results could lead to interesting conclusions.
 
