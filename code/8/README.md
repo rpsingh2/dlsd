@@ -7,15 +7,69 @@ This experiment explores the difference between NSGA-II with different secondary
 ### Genetic Algorithm
 Genetic Algorithms are a type of optimization technique that keep a collection as solutions known as a population. During each iteration of this algorithm, the populations decisions are bred with eachother and mutated. Then the newly created population is compared to itself and the best out of the new population is saved.
 
+The basic flow is:
+*Crossover (create children)
+*Mutate (introduce some randomness)
+*Evaluate (select fittest)
+
+```
+while gen < gens:
+    children = []
+    for _ in range(pop_size):
+        mom = random.choice(population)
+        dad = random.choice(population)
+        while (mom == dad):
+            dad = random.choice(population)
+        child = mutate(crossover(mom, dad), mutation_rate)
+        if problem.is_valid(child) and child not in population+children:
+            children.append(child)
+    population += children
+    population = elitism(population, pop_size)
+    gen += 1
+```
+
 ### NSGA-II
 ![alt tag](https://github.com/txt/ase16/blob/master/img/nsgaii.png?raw=true)
 Similar to a standard genetic algorithm with a different metric for selection. NSGA-II uses a quick frontier based non-dominated sort to begin with. After the frontiers are sorted, a secondary sort is to the front that contains more samples than is neccicary for the population. The number of simples needed to maintain the population is kept while the remainder are dropped. The secondary sort mechanic is where the two implementions of the algorithm differ.
 
 #### Bdom + Cuboid
-Cuboid distances are basically the sum of the verticle spaces between the closest candidates to a point. 
+Cuboid distances are basically the sum of the verticle spaces between the closest candidates to a point. The cuboid distances for each point are compared against oneanother using binary domination.
 ![alt tag](https://github.com/txt/ase16/blob/master/img/cuboid.png?raw=true)
 
+```
+def bdom(one, two):
+    dominates = False
+
+    for i in number of objectives:
+        if two[i] < one[i]:
+            return False
+        elif one[i] < two[i]:
+            dominates = True
+
+    if dominates: return True
+    return False
+```
+
 #### Cdom
+Continuous domination is a lot like binary domination. The difference is that determines by how much one point in space dominates another. Instead of returning a binary yes or no, cdom returns a value indicating how much one list dominates the other. This can be used in sorting the population of genetic algorithms.
+
+```
+def cdom(self, x, y):
+    def expLoss(w, x1, y1, n):
+        return -1 * (w * (x1 - y1) / n)
+
+    def loss(x, y):
+        losses = []
+        n = min(len(x), len(y))
+        for obj in range(n):
+            x1, y1 = x[obj], y[obj]
+            losses += [expLoss(-1, x1, y1, n)]
+        return sum(losses) / n
+
+    l1 = loss(x, y)
+    return l1
+
+```
 
 ### Models
 All models in this experiment come from the DTLZ family<sup>[1]</sup><sup>[2]</sup>.
@@ -95,7 +149,7 @@ There appears to be no real difference between hypervolumes of models obptimized
 [1] http://www.tik.ee.ethz.ch/file/c7c5e610a0c7e26d566a3601e5cce2f4/DTLZ2001a.pdf
 [2] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
 [3] https://github.com/wreszelewski/nsga2/tree/master/nsga2
-[4] 
+[4] https://ls11-www.cs.uni-dortmund.de/rudolph/hypervolume/start
 
 
 ## Results Continued:
