@@ -2,7 +2,7 @@
 
 ## Abstract
 NSGA-II is an extremely popular algorithm mused in mutli-objective optimizations problems. NSGA-II is known for its fast selection operator that uses a quick non-domination sort of the frontiers in a population. With this experiment, the results of two types of secondary sorting methods were explored. 
-With this setup we tried to explore the difference between using binary domination with cuboid distances and continuous domination as two different types of secondary sorts. Using the DTLZ family of models we were able to obtain results about each of the final populations of points evolved using NSGA-II with each secondary selection method. It turns out that both seem about the same in terms of impact on hypervolume regardless of the number of objectives used.
+With this setup we tried to explore the difference between using binary domination with cuboid distances and continuous domination as two different types of secondary sorts. Using the DTLZ family of models we were able to obtain results about each of the final populations of points evolved using NSGA-II with each secondary selection method. It turns out neither method has any particualr advantage in terms of impact on hypervolume regardless of the number of objectives used.
 
 
 ## Introduction
@@ -38,6 +38,10 @@ Similar to a standard genetic algorithm with a different metric for selection. N
 Cuboid distances are basically the sum of the vertical spaces between the closest candidates to a point. The cuboid distances for each point are compared against one another using binary domination.
 ![alt tag](https://github.com/txt/ase16/blob/master/img/cuboid.png?raw=true)
 
+Binary domination compares two solutions such that:
+1. at least one objective in the first solution is better than any objective in the second solution
+2. no objective in the first solution is worse than any objective in the second solution
+
 ```
 def bdom(one, two):
     dominates = False
@@ -53,8 +57,9 @@ def bdom(one, two):
 ```
 
 #### Cdom
-Continuous domination is a lot like binary domination. The difference is that determines by how much one point in space dominates another. Instead of returning a binary yes or no, cdom returns a value indicating how much one list dominates the other. With continuous domination, the differences between two lists are also increased by an exponential factor. As a result, points that dominate a solution by quite a bit stand out more than points that dominate solutions only by a slight margin. This can be used in sorting the population of genetic algorithms.
+Continuous domination can be compared to binary domination in that they are both use to compare the dominance of solutions. The difference is that continuous domination determines by how much one point in space dominates another. Instead of returning a binary "yes or no", cdom returns a value indicating how much one list dominates the other. With continuous domination, the differences between two lists are also increased by an exponential factor. As a result, points that dominate a solution by quite a bit stand out more than points that dominate solutions only by a slight margin. This can be used in sorting the population of genetic algorithms.
 
+Candidate solutons that dominate points and have a higher cdom score are more likeley to get kept in a population than those with a lower cdom score.
 ```
 def cdom(self, x, y):
     def expLoss(w, x1, y1, n):
@@ -154,7 +159,7 @@ There appears to be no real difference between hypervolumes of models optimized 
 What is interesting to see is that as the number of objectives increases, the hypervolume for each optimized model also decreases. When running the experiment, it also appears that as the number of objectives increases, so to does the runtime of NSGA-II.
 
 ## Threats to Validity
-* Perhaps DTLZ family of models will not produce results that are representative of real world problems.
+* Only 20 runs of each model, objective and decision combination were used in order to produce results. More runs of each model may be needed in order to eleminate noise.
 * During this experiment, a relatively small number of objectives and decisions were used. Using models with higher numbers of objectives may produce results that show more of a difference between bdom + cuboid and cdom as secondary sorting methods.
 
 ## Future Work
@@ -168,7 +173,8 @@ What is interesting to see is that as the number of objectives increases, the hy
 [2] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
 [3] https://github.com/wreszelewski/nsga2/tree/master/nsga2
 [4] https://ls11-www.cs.uni-dortmund.de/rudolph/hypervolume/start
-
+[5] https://github.com/txt/ase16/blob/master/doc/perform.md
+[6] https://github.com/txt/ase16/blob/master/doc/stats.md
 
 
 ## Results Continued:
