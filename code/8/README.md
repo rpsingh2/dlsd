@@ -70,6 +70,7 @@ rank ,         name ,    med   ,  iqr
 ```
 Results for DTLZ1 are not pariticularly meaningful. Every algorithm ended up getting a near perfect hypervolume. No decerniable difference between cdom and bdom.
 
+```
 rank ,         name ,    med   ,  iqr 
 ----------------------------------------------------
    1 , dtlz3 8 10 bdom ,      97  ,     0 (---------------|-------------*), 0.00,  0.97,  0.97,  0.97,  0.97
@@ -96,9 +97,11 @@ rank ,         name ,    med   ,  iqr
    1 , dtlz3 2 20 cdom ,      99  ,     0 (               |             *), 0.99,  0.99,  0.99,  0.99,  0.99
    1 , dtlz3 2 40 bdom ,      99  ,     0 (               |             *), 0.99,  0.99,  0.99,  0.99,  0.99
    1 , dtlz3 2 40 cdom ,      99  ,     0 (               |             *), 0.99,  0.99,  0.99,  0.99,  0.99
+```
 
 Results to dtlz3 matched those of dtlz1.
 
+```
 rank ,         name ,    med   ,  iqr 
 ----------------------------------------------------
    1 , dtlz5 8 10 bdom ,      64  ,     1 (-*             |              ), 0.63,  0.63,  0.64,  0.65,  0.66
@@ -125,6 +128,7 @@ rank ,         name ,    med   ,  iqr
    6 , dtlz5 6 40 cdom ,     104  ,    16 (           ----|--  *-------  ), 0.86,  1.02,  1.07,  1.08,  1.23
    7 , dtlz5 4 40 cdom ,     111  ,     2 (               |     -*--     ), 1.10,  1.11,  1.11,  1.13,  1.17
    7 , dtlz5 4 40 bdom ,     115  ,     1 (               |      --*---- ), 1.11,  1.15,  1.16,  1.17,  1.27
+```
 
 ## Threats to Validity
 
