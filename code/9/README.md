@@ -129,8 +129,11 @@ Future Work:
 * Implementing code in a threaded fashion to allow for quicker runtimes is really a must. Waiting for even a relatively small run of the DE is painfully slow.
 * Implementing all other DTLZ models and comparing the results could lead to interesting conclusions.
 
-Refrences:
+## Refrences
 [1] https://github.com/txt/ase16/blob/master/doc/nsga2spea2.md
-[2]  https://github.com/txt/ase16/blob/master/doc/perform.md
+[2] https://github.com/txt/ase16/blob/master/doc/perform.md
 [3] https://github.com/txt/ase16/blob/master/doc/stats.md
-[4]
+[4] http://www.tik.ee.ethz.ch/file/c7c5e610a0c7e26d566a3601e5cce2f4/DTLZ2001a.pdf
+[5] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
+[6] https://github.com/wreszelewski/nsga2/tree/master/nsga2 [refrence for nsga-ii format]
+[7] https://ls11-www.cs.uni-dortmund.de/rudolph/hypervolume/start
