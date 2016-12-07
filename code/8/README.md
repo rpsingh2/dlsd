@@ -92,12 +92,12 @@ DTLZ1 can be used with any number of objectives and decisions. The pareto fronti
 
 ![alt_tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz3/images/dtlz3_Formulation.png)
 
-DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a downward sloping curved line.
+DTLZ3 can be used with any number of objectives and decisions. The pareto frontier for this model is a downward sloping curved line.
 
 #### DTLZ5
 ![alt tag](https://github.com/rpsingh2/fss16rtr/blob/master/code/8/images/DTLZ5.PNG)
 
-DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is also a downward sloping curved line. For some reason, this model became one of the most challenging ones for NSGA-II to fit, especially when dealing with higher numbers of objectives.
+DTLZ5 can be used with any number of objectives and decisions. The pareto frontier for this model is also a downward sloping curved line. For some reason, this model became one of the most challenging ones for NSGA-II to fit, especially when dealing with higher numbers of objectives.
 
 #### DTLZ7
 
