@@ -1,0 +1,7 @@
+```
+SCOTT-KNOTT of results for average HV for GA and DTLZ5 with [2, 4, 6, 8] objs and 10 decisions 
+rank ,         name ,    med   ,  iqr 
+----------------------------------------------------
+   1 ,    untrained ,      78  ,    27 (---------  *   |      -       ), 0.64,  0.75,  0.78,  0.93,  0.94
+   2 ,      trained ,      91  ,    21 (        -------|-    *    --  ), 0.74,  0.87,  0.91,  0.97,  1.01
+```
