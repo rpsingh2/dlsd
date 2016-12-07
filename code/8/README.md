@@ -107,7 +107,7 @@ DTLZ7 is a model created in order to test the potential for optimizers to find a
 
 ### Result Analysis
 #### Hypervolume
-Hypervolume is area that the pareto frontier contains. Essentially the size of the area that can contain non-pareto solutions. The better the hypervolume, the greater the area explored and the better the pareto solutions.<sup>[5]</sup>.
+Hypervolume is volume with in a pareto frontier. Essentially, hypervolume increases as the pareto frontier approaches closer to its overall goal.<sup>[5]</sup>.
 
 #### A12 (Used With Scott-Knott)
 In order to judge the difference in improvement for each optimizer’s current and previous solutions, the A12 small effect comparison was used. A12 is used to determine the overall difference between two sets of numbers. A12 is used to measure the probability that running an algorithm using one set of numbers yields a higher result than running the same algorithm using the second set of numbers. According to Vargha and Delaney, the output from the A12 test can be viewed as such:
