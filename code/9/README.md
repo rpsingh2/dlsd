@@ -2,12 +2,13 @@
 ## Abstract
 Over the course of this semester we have learned a lot about how optimizers can help find solutions to many kinds of complex models. We also learned that determining what parameters to use on an optimizer can also impact the optimizer’s performance.
 
-Naturally, the next step is to use an optimizer to optimize an optimizer. With During this experiment, we decided to use Differential Evolution in order to maximize the hypervolume produced by an instance of NSGA-II while using the model DTLZ5.
+Naturally, the next step is to use an optimizer to optimize the parameters of an optimizer. During this experiment, we decided to use Differential Evolution in order to maximize the hypervolume produced by an instance of NSGA-II while using the model DTLZ5.
 
-Overall we received promising results with respect to an improvement in average hypervolume.
+Overall we received promising results with respect to an improvement in average hypervolume as well as interesting findings about which parameters may be the most important when implementing a genetic algorithm.
+
 
 ## Introduction
-This section provides a general overview of some of the teh
+This section provides a general overview of some of the algorithms and performance measures used within this assignment. Much of the content for this section mirrors the previous reports as this assignment is mostly just fitting parts of the previous assignments together into a whole new beast.
 
 ### Genetic Algorithm
 Genetic Algorithms are a type of optimization technique that maintains a set of candidate solutions known as a population. During each iteration of this algorithm, individual from the population bred with each other and mutated. Then the newly created population is compared to itself and the best out of the new population is saved.
@@ -53,6 +54,16 @@ While has generations left and has lives
 	Save new population	
 ```
 
+### Model Used
+### Models
+#### DTLZ5
+![alt tag](https://github.com/rpsingh2/fss16rtr/blob/master/code/8/images/DTLZ5.PNG)
+
+DTLZ5 can be used with any number of objectives and decisions. The pareto frontier for this model is also a downward sloping curved line. According to the results for the previous assigment, this model was one of the most challenging ones for NSGA-II to fit, especially when dealing with higher numbers of objectives.
+
+Since the previous unturned instance of NSGA-II had difficulty achieving high hypervolumes with the model, it would be a good basis for comparison for determining if a tuned NSGA-II can actually obtain better results.
+
+
 ### Performance Measures
 #### Hypervolume
 Hypervolume is volume with in a pareto frontier. Essentially, hypervolume increases as the pareto frontier approaches closer to its overall goal.<sup>[2]</sup>.
@@ -71,10 +82,8 @@ The Scott-Knot test is used for clustering results into similar categories. Scot
 
 This is used in order to determine if there is a significant difference between the resulting hypervolumes for each algorithm.
 
-## Experimental Setup
-NSGA-II is applied to DTLZ1, DTLZ3, DTLZ5, DTLZ7 with a variety  of configurations. Each model is tested with 10, 20 and 40 decisions with 2, 4, 6, and 8 objectives. Each permutation of models, the number of decisions and number of objectives are also executed with both Bdom + Cuboid and Cdom as secondary sorting operations. 20 Runs are executed for each permutation of model. After the execution of models, the hypervolume is measured for each optimized solution.
 
-##Experimental Setup
+## Experimental Setup
 The runtime of a differential evolution algorithm optimizing a genetic algorithm ended up being a lot longer than expected. We thought of swapping out a standard genetic algorithm for NSGA-II since the later is supposed to be faster than a GA <sup>[1]</sup>. Even when switching out the standard genetic algorithm for a NSGA-II implementation, the runtime was still quite considerable. With this being said, we found it infeasible to optimize genetic algorithms that optimize each DTLZ model and objective combinations we used previously. 
 
 We instead focused on optimizing GAs that optimized DTLZ5 with 2, 4, 6, and 8 objectives with 10 decisions. From the last homework it was clear to see that DTLZ5 with 2, 4, 6 and 8 all had varying degrees of success when it comes to obtaining maximal hyper volumes. DTLZ5 with 6 and 8 objectives were especially low. We thought it would be interesting to see if we could improve on those results by optimizing NSGA-II and seeing if the modified optimizer gets on average a better hypervolume.
@@ -121,6 +130,7 @@ Threats to Validity:
 * All combinations of DTLZ as well as a variety of sizes for both number of objectives and decisions should be tested in order to see if the current findings hold true for the other models as well.
 * In addition to hypervolume, spread and intergenerational distance can also be considered for optimizing a genetic algorithm.
 * Due to time constraints, a relatively small population and number of generations were used for the differential evolution optimizer. With a larger population and greater number of generations the average hypervolume may improve even more.
+* Now that we have differential evolution optimizer stacked on top of an NSGA-II optimizer, who or what is going to optimize the differential evolution optimizer?
 
 Future Work:
 * From the results it appears that a higher Mutation Rate for a GA may have beneficial effect in terms of maximizing the hypervolume. 
@@ -130,10 +140,10 @@ Future Work:
 * Implementing all other DTLZ models and comparing the results could lead to interesting conclusions.
 
 ## Refrences
-[1] https://github.com/txt/ase16/blob/master/doc/nsga2spea2.md
-[2] https://github.com/txt/ase16/blob/master/doc/perform.md
-[3] https://github.com/txt/ase16/blob/master/doc/stats.md
-[4] http://www.tik.ee.ethz.ch/file/c7c5e610a0c7e26d566a3601e5cce2f4/DTLZ2001a.pdf
-[5] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
-[6] https://github.com/wreszelewski/nsga2/tree/master/nsga2 [refrence for nsga-ii format]
-[7] https://ls11-www.cs.uni-dortmund.de/rudolph/hypervolume/start
+* [1] https://github.com/txt/ase16/blob/master/doc/nsga2spea2.md
+* [2] https://github.com/txt/ase16/blob/master/doc/perform.md
+* [3] https://github.com/txt/ase16/blob/master/doc/stats.md
+* [4] http://www.tik.ee.ethz.ch/file/c7c5e610a0c7e26d566a3601e5cce2f4/DTLZ2001a.pdf
+* [5] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
+* [6] https://github.com/wreszelewski/nsga2/tree/master/nsga2 [refrence for nsga-ii format]
+* [7] https://ls11-www.cs.uni-dortmund.de/rudolph/hypervolume/start
