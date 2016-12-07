@@ -183,7 +183,7 @@ The bottom chart shows the overall change in the initial and ending population o
 * May be worthwhile to explore the effects of using a Genetic Algorithm to optimize Simulated Annealing, Max WalkSat and Differential Evolution in order to compare the overall performance of optimized optimizers against one another.
 
 ## References
-*[1] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php
-*[2] https://github.com/txt/ase16/blob/master/doc/perform.md
-*[3] https://github.com/txt/ase16/blob/master/doc/talk3sa.md
-*[4] https://github.com/txt/ase16/blob/master/doc/mws.md
+* [1] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/index.php
+* [2] https://github.com/txt/ase16/blob/master/doc/perform.md
+* [3] https://github.com/txt/ase16/blob/master/doc/talk3sa.md
+* [4] https://github.com/txt/ase16/blob/master/doc/mws.md
