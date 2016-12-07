@@ -12,15 +12,26 @@ Genetic Algorithms are a type of optimization technique that keep a collection a
 Similar to a standard genetic algorithm with a different metric for selection. NSGA-II uses a quick frontier based non-dominated sort to begin with. After the frontiers are sorted, a secondary sort is to the front that contains more samples than is neccicary for the population. The number of simples needed to maintain the population is kept while the remainder are dropped. The secondary sort mechanic is where the two implementions of the algorithm differ.
 
 #### Bdom + Cuboid
-Cuboid distances is basically the sum of the verticle spaces between the closest candidates to a point. 
+Cuboid distances are basically the sum of the verticle spaces between the closest candidates to a point. 
 ![alt tag](https://github.com/txt/ase16/blob/master/img/cuboid.png?raw=true)
 
 #### Cdom
 
 ### Models
+All models in this experiment come from the DTLZ family<sup>[1]</sup><sup>[2]</sup>.
+
 #### DTLZ1
+![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz1/images/dtlz1_Formulation.png)
+DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a straight line.
+
 #### DTLZ3
+![alt_tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz3/images/dtlz3_Formulation.png)
+DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a downward sloping curved line.
+
 #### DTLZ5
+![alt tag](coming soon)
+DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is also a downward sloping curved line.
+
 #### DTLZ7
 ![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/images/dtlz7_Formulation.png)
 DTLZ7 is a model created in order to test the potential for optimizers to find and maintain several distinct disjointed pareto-optimal solutions. As you can see, when using two objectives, x1 and x2, the pareto-optimal regions are spread out quite a bit. With DTLZ7 it is possible to implement the model using any number of objectives and any number of decisions.
@@ -71,14 +82,21 @@ rank ,         name ,    med   ,  iqr
 
 DTLZ5 turned out to be the only model that produced results that were statisticaly different from oneanother. The output for each of the other models can be found at the bottom of the report.
 
-## Threats to Validity
+There appears to be no real difference between hypervolumes of models obptimized with bdom + cuboid sorting verses models optimimized with cdom.
 
+## Threats to Validity
+* Perhaps DTLZ family of models will not produce results that are 
 
 ## Future Work
 * It would be worthwile to implement Spread and Intergenerational Distance as a final population fitness measurement in a addition to hypervolume. Perhaps Cdom and Bdom produce different values for Spread and IGD in a way that is not reflected in hypervolume.
 * Also changing the number of generations and the population size that NSGA-II has available may help aid in differentiating the results.
 
 ## Refrences
+[1] http://www.tik.ee.ethz.ch/file/c7c5e610a0c7e26d566a3601e5cce2f4/DTLZ2001a.pdf
+[2] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
+[3] https://github.com/wreszelewski/nsga2/tree/master/nsga2
+[4] 
+
 
 ## Results Continued:
 ```
