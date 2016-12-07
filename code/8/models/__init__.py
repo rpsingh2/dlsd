@@ -25,7 +25,8 @@ def bdom(x, y):
     return True
 
 class MODEL():
-    def __init__(self, zdt_definitions, num_decisions, num_objectives, domination = "bdom"):
+    def __init__(self, name, zdt_definitions, num_decisions, num_objectives, domination = "bdom"):
+        self.name = name
         self.zdt_definitions = zdt_definitions
         self.num_decisions = num_decisions
         self.num_objectives = num_objectives
@@ -35,10 +36,7 @@ class MODEL():
         self.problem_type = None
 
     def __dominates(self, individual2, individual1):
-        #if self.domination_type == "bdom":
         return bdom(individual1.objectives, individual2.objectives)
-        #if self.domination_type == "cdom":
-        #    return cdom(individual1.objectives, individual2.objectives)
 
     def generateIndividual(self):
         individual = Individual()
@@ -50,6 +48,7 @@ class MODEL():
         return individual
 
     def calculate_objectives(self, individual):
+
         individual.objectives = self.zdt_definitions.calc_objectives(individual, self.num_objectives)
         for i in range(self.num_objectives):
             if self.min_objectives[i] is None or individual.objectives[i] < self.min_objectives[i]:

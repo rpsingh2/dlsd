@@ -1,6 +1,9 @@
 import math
 
 class DTLZ1():
+    def name(self):
+        return "DTLZ1"
+
     def g(self, individual, objs):
         g = len(individual.features) - objs + 1
         for x in individual.features[objs - 1:]:
@@ -17,6 +20,3 @@ class DTLZ1():
                 val = val * (1 - individual.features[objs - i])
             f.append(val)
         return f
-
-    def perfect_pareto_front(self):
-        pass
