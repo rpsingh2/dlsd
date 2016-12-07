@@ -1,11 +1,13 @@
 # NSGA-II with CDOM and BDOM + Cuboid distance secondary sorters
 
 ## Abstract
-This experiment explores the difference between NSGA-II with different secondary sort operators. With this setup we tried to explore the diffrence between using binary domination with cuboid distances and continuous domination as two different types of selection operators. It turns out that both seem about the same in terms of impact on hypervolume reguardless of the number of objectives used.
+NSGA-II is an extremely popular algorithm mused in mutli-objective optimizations problems. NSGA-II is known for its fast selection operator that uses a quick non-domination sort of the frontiers in a population. With this experiment, the results of two types of secondary sorting methods were explored. 
+With this setup we tried to explore the difference between using binary domination with cuboid distances and continuous domination as two different types of secondary sorts. Using the DTLZ family of models we were able to obtain results about each of the final populations of points evolved using NSGA-II with each secondary selection method. It turns out that both seem about the same in terms of impact on hypervolume regardless of the number of objectives used.
+
 
 ## Introduction
 ### Genetic Algorithm
-Genetic Algorithms are a type of optimization technique that keep a collection as solutions known as a population. During each iteration of this algorithm, the populations decisions are bred with eachother and mutated. Then the newly created population is compared to itself and the best out of the new population is saved.
+Genetic Algorithms are a type of optimization technique that keep a collection as solutions known as a population. During each iteration of this algorithm, the populations decisions are bred with each other and mutated. Then the newly created population is compared to itself and the best out of the new population is saved.
 
 The basic flow is:
 *Crossover (create children)
@@ -51,7 +53,7 @@ def bdom(one, two):
 ```
 
 #### Cdom
-Continuous domination is a lot like binary domination. The difference is that determines by how much one point in space dominates another. Instead of returning a binary yes or no, cdom returns a value indicating how much one list dominates the other. This can be used in sorting the population of genetic algorithms.
+Continuous domination is a lot like binary domination. The difference is that determines by how much one point in space dominates another. Instead of returning a binary yes or no, cdom returns a value indicating how much one list dominates the other. With continuous domination, the differences between two lists are also increased by an exponential factor. As a result, points that dominate a solution by quite a bit stand out more than points that dominate solutions only by a slight margin. This can be used in sorting the population of genetic algorithms.
 
 ```
 def cdom(self, x, y):
@@ -75,24 +77,35 @@ def cdom(self, x, y):
 All models in this experiment come from the DTLZ family<sup>[1]</sup><sup>[2]</sup>.
 
 #### DTLZ1
+
 ![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz1/images/dtlz1_Formulation.png)
 DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a straight line.
 
 #### DTLZ3
+
 ![alt_tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz3/images/dtlz3_Formulation.png)
 DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a downward sloping curved line.
 
 #### DTLZ5
-![alt tag](coming soon)
-DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is also a downward sloping curved line.
+![alt tag](https://github.com/rpsingh2/fss16rtr/blob/master/code/8/images/DTLZ5.PNG)
+
+DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is also a downward sloping curved line. For some reason, this model became one of the most challenging ones for NSGA-II to fit, especially when dealing with higher numbers of objectives.
 
 #### DTLZ7
+
 ![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz7/images/dtlz7_Formulation.png)
 DTLZ7 is a model created in order to test the potential for optimizers to find and maintain several distinct disjointed pareto-optimal solutions. As you can see, when using two objectives, x1 and x2, the pareto-optimal regions are spread out quite a bit. With DTLZ7 it is possible to implement the model using any number of objectives and any number of decisions.
 
 ### Result Analysis
 #### Hypervolume
 Hypervolume is area that the pareto frontier contains. Essentially the size of the area that can contain non-pareto solutions. The better the hypervolume, the greater the area explored and the better the pareto solutions.
+
+#### A12 (Used With Scott-Knott)
+In order to judge the difference in improvement for each optimizer’s current and previous solutions, the A12 small effect comparison was used. A12 is used to determine the overall difference between two sets of numbers. A12 is used to measure the probability that running an algorithm using one set of numbers yields a higher result than running the same algorithm using the second set of numbers. According to Vargha and Delaney, the output from the A12 test can be viewed as such:
+
+*A12 > 71% represents a large difference
+*A12 > 64% represents a medium difference
+*A12 =< 56% or less represents a small difference
 
 #### Scott-Knott
 The Scott-Knot test is used for clustering results into similar categories. Scott-Knot recursively bi-clusters the output from each of the optimizers into ranks. At each level of ranks, another split is created where the expected values are the most different. Before continuing, Boostrap (random sampling) and A12 are called to check and see if the splits are significantly different.
@@ -103,7 +116,7 @@ This is used in order to determine if there is a significant difference between 
 NSGA-II is applied to DTLZ1, DTLZ3, DTLZ5, DTLZ7 with a variety  of configurations. Each model is tested with 10, 20 and 40 decisions with 2, 4, 6, and 8 objectives. Each permutation of models, the number of decisions and number of objectives are also executed with both Bdom + Cuboid and Cdom as secondary sorting operations. 20 Runs are executed for each permutation of model. After the execution of models, the hypervolume is measured for each optimized solution.
 
 ## Results
-Each of the results below show an analysis of the hypervolumes generated by NSGA-II given the paramaters under the 'name' column. For example 'dtlz1 8 10 bdom' means NSGA-II optimized the model dtlz1 with 8 objectives and 10 decisions. Each of the hypervolumes are normalized from 0-1. The higher the number, the better the result.
+Each of the results below show an analysis of the hypervolumes generated by NSGA-II given the paramaters under the 'name' column. For example 'dtlz1 8 10 bdom' means NSGA-II optimized the model dtlz1 with 8 objectives and 10 decisions. Each of the hypervolumes are normalized by the number of objectives that the model used. The higher the number, the better the result.
 
 ```
 rank ,         name ,    med   ,  iqr 
@@ -136,20 +149,26 @@ rank ,         name ,    med   ,  iqr
 
 DTLZ5 turned out to be the only model that produced results that were statisticaly different from oneanother. The output for each of the other models can be found at the bottom of the report.
 
-There appears to be no real difference between hypervolumes of models optimized  with bdom + cuboid sorting verses models optimized  with cdom.
+There appears to be no real difference between hypervolumes of models optimized with bdom + cuboid sorting verses models optimized  with cdom.
+
+What is interesting to see is that as the number of objectives increases, the hypervolume for each optimized model also decreases. When running the experiment, it also appears that as the number of objectives increases, so to does the runtime of NSGA-II.
 
 ## Threats to Validity
-* Perhaps DTLZ family of models will not produce results that are 
+* Perhaps DTLZ family of models will not produce results that are representative of real world problems.
+* During this experiment, a relatively small number of objectives and decisions were used. Using models with higher numbers of objectives may produce results that show more of a difference between bdom + cuboid and cdom as secondary sorting methods.
 
 ## Future Work
 * It would be worthwhile  to implement Spread and Intergenerational Distance as a final population fitness measurement in a addition to hypervolume. Perhaps Cdom and Bdom produce different values for Spread and IGD in a way that is not reflected in hypervolume.
 * Also changing the number of generations and the population size that NSGA-II has available may help aid in differentiating the results.
+* Testing how fast each optimizer can reach a desired hypervolume, spread or intergenerational distance may also lead to interesting results. As the number of objectives and decisions increased, the time it takes for the models to runs increases dramatically. It would be interesting to see how each type of sorting impacts how fast NSGA-II reaches a near-perfect solution. 
+
 
 ## References
 [1] http://www.tik.ee.ethz.ch/file/c7c5e610a0c7e26d566a3601e5cce2f4/DTLZ2001a.pdf
 [2] http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/
 [3] https://github.com/wreszelewski/nsga2/tree/master/nsga2
 [4] https://ls11-www.cs.uni-dortmund.de/rudolph/hypervolume/start
+
 
 
 ## Results Continued:
