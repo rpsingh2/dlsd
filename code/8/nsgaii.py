@@ -5,7 +5,6 @@ from population import Population
 from stats import a12
 
 from hypervolume import *
-from stats import rdivDemo as sk
 
 def hv(population, num_objectives):
     referencePoint = [11 for _ in range(num_objectives)]
@@ -14,9 +13,14 @@ def hv(population, num_objectives):
     volume = hv.compute(individual.objectives for individual in population)
     return volume
 
-def norm_hypervol(hv, obj):
+def norm_hypervol(problem, hv, obj):
     exp = 1 if obj == 2 else obj / 2
-    return hv / (122 ** exp)
+    max_hv = 150
+    if problem.name == "dtlz1": max_hv = 122
+    if problem.name == "dtlz3": max_hv = 122
+    if problem.name == "dtlz5": max_hv = 140
+    if problem.name == "dtlz7": max_hv = 116
+    return hv / (max_hv ** exp) #usually 22
 
 
 class NSGAII(object):
@@ -211,9 +215,9 @@ class NSGAII(object):
             self.population = new_population
             children = self.create_children(self.population)
 
-            self.hypervolume = norm_hypervol(hv(self.population.population, self.problem.num_objectives), self.problem.num_objectives)
-            if self.hypervolume >= 0.99:
+            self.hypervolume = norm_hypervol(self.problem, hv(self.population.population, self.problem.num_objectives), self.problem.num_objectives)
+            #if self.hypervolume >= 0.99:
                 #print "volbreak"
-                break
+            #    break
 
         return self.hypervolume, total_runs

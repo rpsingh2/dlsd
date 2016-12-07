@@ -1,6 +1,4 @@
 class Individual(object):
-    """Represents one individual"""
-    
     def __init__(self):
         self.rank = None
         self.crowding_distance = None
