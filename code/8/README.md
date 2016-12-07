@@ -7,7 +7,7 @@ With this setup we tried to explore the difference between using binary dominati
 
 ## Introduction
 ### Genetic Algorithm
-Genetic Algorithms are a type of optimization technique that keep a collection as solutions known as a population. During each iteration of this algorithm, the populations decisions are bred with each other and mutated. Then the newly created population is compared to itself and the best out of the new population is saved.
+Genetic Algorithms are a type of optimization technique that maintains a set of candidate solutions known as a population. During each iteration of this algorithm, individual from the population bred with each other and mutated. Then the newly created population is compared to itself and the best out of the new population is saved.
 
 The basic flow is:
 *Crossover (create children)
