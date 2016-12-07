@@ -32,6 +32,7 @@ while gen < gens:
 
 ### NSGA-II
 ![alt tag](https://github.com/txt/ase16/blob/master/img/nsgaii.png?raw=true)
+
 Similar to a standard genetic algorithm with a different metric for selection. NSGA-II uses a quick frontier based non-dominated sort to begin with. After the frontiers are sorted, a secondary sort is to the front that contains more samples than is needed for the population. The number of simples needed to maintain the population is kept while the remainder are dropped. The secondary sort mechanic is where the two implementations  of the algorithm differ.
 
 #### Bdom + Cuboid
@@ -84,11 +85,13 @@ All models in this experiment come from the DTLZ family<sup>[1]</sup><sup>[2]</s
 #### DTLZ1
 
 ![alt tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz1/images/dtlz1_Formulation.png)
+
 DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a straight line.
 
 #### DTLZ3
 
 ![alt_tag](http://people.ee.ethz.ch/~sop/download/supplementary/testproblems/dtlz3/images/dtlz3_Formulation.png)
+
 DTLZ1 can be used with any number of objectives and decisions. The pareto frontier for this model is a downward sloping curved line.
 
 #### DTLZ5
@@ -103,7 +106,7 @@ DTLZ7 is a model created in order to test the potential for optimizers to find a
 
 ### Result Analysis
 #### Hypervolume
-Hypervolume is area that the pareto frontier contains. Essentially the size of the area that can contain non-pareto solutions. The better the hypervolume, the greater the area explored and the better the pareto solutions.
+Hypervolume is area that the pareto frontier contains. Essentially the size of the area that can contain non-pareto solutions. The better the hypervolume, the greater the area explored and the better the pareto solutions.<sup>[5]</sup>.
 
 #### A12 (Used With Scott-Knott)
 In order to judge the difference in improvement for each optimizer’s current and previous solutions, the A12 small effect comparison was used. A12 is used to determine the overall difference between two sets of numbers. A12 is used to measure the probability that running an algorithm using one set of numbers yields a higher result than running the same algorithm using the second set of numbers. According to Vargha and Delaney, the output from the A12 test can be viewed as such:
@@ -113,7 +116,7 @@ In order to judge the difference in improvement for each optimizer’s current a
 *A12 =< 56% or less represents a small difference
 
 #### Scott-Knott
-The Scott-Knot test is used for clustering results into similar categories. Scott-Knot recursively bi-clusters the output from each of the optimizers into ranks. At each level of ranks, another split is created where the expected values are the most different. Before continuing, Boostrap (random sampling) and A12 are called to check and see if the splits are significantly different.
+The Scott-Knot test is used for clustering results into similar categories. Scott-Knot recursively bi-clusters the output from each of the optimizers into ranks. At each level of ranks, another split is created where the expected values are the most different. Before continuing, Boostrap (random sampling) and A12 are called to check and see if the splits are significantly different<sup>[6]</sup>..
 
 This is used in order to determine if there is a significant difference between the resulting hypervolumes for each algorithm.
 
