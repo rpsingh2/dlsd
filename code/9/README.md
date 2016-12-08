@@ -64,7 +64,7 @@ DTLZ5 can be used with any number of objectives and decisions. The pareto fronti
 Since the previous unturned instance of NSGA-II had difficulty achieving high hypervolumes with the model, it would be a good basis for comparison for determining if a tuned NSGA-II can actually obtain better results.
 
 
-### Performance Measures
+### Performance Measures and Statistics
 #### Hypervolume
 Hypervolume is volume with in a pareto frontier. Essentially, hypervolume increases as the pareto frontier approaches closer to its overall goal.<sup>[2]</sup>.
 
