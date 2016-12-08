@@ -62,7 +62,9 @@ while gen < gens:
 The most complicated and newest algorithm of the bunch. This is a type of Genetic Algorithm, meaning that a population of different solutions are maintained and evolved over time. This difference in the operation of Differential Evolution and the singe objective non-population driven optimizers had to be accounted for.
 
 Differential Evolution uses a different mutator method compared to a standard genetic algorithm. DE mutates an individual's decision such that:
+
 new = X + F*(Y - Z)
+
 Where X, Y and Z are other random individual's decisions and F is a set constant.
 
 In this experiment a population of 100 individuals were used. The crossover rate was set to 30% while the mutation factor was 75%. The mutation scheme is DE/rand/1.
