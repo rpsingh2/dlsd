@@ -99,7 +99,7 @@ In order to judge the difference in improvement for each optimizer’s current a
 -	A12 > 64% represents a medium difference
 -	A12 =< 56% or less represents a small difference
 
-Within the optimizers we implemented, if A12 shows a small difference between the current solution and a candidate solution, the algorithm is assumed to be close to converting to a solution. As such, the optimizer is set to terminate earlier.
+Within the optimizers I implemented, if A12 shows a small difference between the current solution and a candidate solution, the algorithm is assumed to be close to converting to a solution. As such, the optimizer is set to terminate earlier.
 
 ```
 lives = 10
@@ -125,7 +125,7 @@ The Scott-Knot test is used for clustering results into similar categories. Scot
 DTLZ7 is a model created in order to test the potential for optimizers to find and maintain several distinct disjointed pareto-optimal solutions. As you can see, when using two objectives, x1 and x2, the pareto-optimal regions are spread out quite a bit. With DTLZ7 it is possible to implement the model using any number of objectives and any number of decisions.
 
 ## Experimental Setup
-In order to explore this problem, three optimization techniques were used; Differential Evolution, MaxWalkSat and Simulated Annealing. The model DTLZ7 was used for optimization. With this test, 10 decisions were used as input to the model we tried to minimize the output for two objectives. 20 Runs of each model were used and the results between cdom loss of the first population and the last population were recorded.
+In order to explore this problem, three optimization techniques were used; Differential Evolution, MaxWalkSat and Simulated Annealing. The model DTLZ7 was used for optimization. With this model, 10 decisions were used as input to the model I tried to minimize the output for two objectives. 20 Runs of each model were used and the results between cdom loss of the first population and the last population were recorded.
 
 ## Results
 
@@ -168,7 +168,7 @@ rank ,         name ,    med   ,  iqr
    1 ,           de ,      50  ,     8 (           *   |              ), 0.45,  0.46,  0.50,  0.53,  0.55
 ```
 
-From the table above we can see that Simulated Annealing on average takes the most amount of runs to make meaningful gains in terms of minimizing its objectives. Max Walksat and Differential Evolution on average take only 10 eras to finish execution while Simulated Annealing finishes in 26 eras.
+From the table above it is clear that Simulated Annealing on average takes the most amount of runs to make meaningful gains in terms of minimizing its objectives. Max Walksat and Differential Evolution on average take only 10 eras to finish execution while Simulated Annealing finishes in 26 eras.
 
 The bottom chart shows the overall change in the initial and ending population objectives using CDOM. In with this measurement, the higher the value the better. As you can see, Differenetial Evolution ened up having on average the best result for CDOM loss.
 
