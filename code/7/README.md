@@ -130,7 +130,7 @@ In order to explore this problem, three optimization techniques were used; Diffe
 ## Results
 
 ### Comparison using Cdom 
-Continuous domination can be compared to binary domination in that they are both use to compare the dominance of solutions. The difference is that continuous domination determines by how much one point in space dominates another. Instead of returning a binary "yes or no", cdom returns a value indicating how much one list dominates the other. With continuous domination, the differences between two lists are also increased by an exponential factor. As a result, points that dominate a solution by quite a bit stand out more than points that dominate solutions only by a slight margin.
+Continuous domination can be compared to binary domination in that they are both uses to compare the dominance of solutions. The difference is that continuous domination determines by how much one point in space dominates another. Instead of returning a binary "yes or no", cdom returns a value indicating how much one list dominates the other. With continuous domination, the differences between two lists are also increased by an exponential factor. As a result, points that dominate a solution by quite a bit stand out more than points that dominate solutions only by a slight margin.
 
 ```
 def cdom(self, x, y):
