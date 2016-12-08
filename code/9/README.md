@@ -2,9 +2,9 @@
 ## Abstract
 Over the course of this semester we have learned a lot about how optimizers can help find solutions to many kinds of complex models. We also learned that determining what parameters to use on an optimizer can also impact the optimizer’s performance.
 
-Naturally, the next step is to use an optimizer to optimize the parameters of an optimizer. During this experiment, we decided to use Differential Evolution in order to maximize the hypervolume produced by an instance of NSGA-II while using the model DTLZ5.
+Naturally, the next step is to use an optimizer to optimize the parameters of an optimizer. During this experiment, Differential Evolution was used in order to maximize the hypervolume produced by an instance of NSGA-II while using the model DTLZ5.
 
-Overall we received promising results with respect to an improvement in average hypervolume as well as interesting findings about which parameters may be the most important when implementing a genetic algorithm.
+Overall I received promising results with respect to an improvement in average hypervolume as well as interesting findings about which parameters may be the most important when implementing a genetic algorithm.
 
 
 ## Introduction
@@ -84,9 +84,9 @@ This is used in order to determine if there is a significant difference between 
 
 
 ## Experimental Setup
-The runtime of a differential evolution algorithm optimizing a genetic algorithm ended up being a lot longer than expected. We thought of swapping out a standard genetic algorithm for NSGA-II since the later is supposed to be faster than a GA <sup>[1]</sup>. Even when switching out the standard genetic algorithm for a NSGA-II implementation, the runtime was still quite considerable. With this being said, we found it infeasible to optimize genetic algorithms that optimize each DTLZ model and objective combinations we used previously. 
+The runtime of a differential evolution algorithm optimizing a genetic algorithm ended up being a lot longer than expected. We thought of swapping out a standard genetic algorithm for NSGA-II since the later is supposed to be faster than a GA <sup>[1]</sup>. Even when switching out the standard genetic algorithm for a NSGA-II implementation, the runtime was still quite considerable. With this being said, I found it infeasible to optimize genetic algorithms that optimize each DTLZ model and objective combinations I used previously. 
 
-We instead focused on optimizing GAs that optimized DTLZ5 with 2, 4, 6, and 8 objectives with 10 decisions. From the last homework it was clear to see that DTLZ5 with 2, 4, 6 and 8 all had varying degrees of success when it comes to obtaining maximal hyper volumes. DTLZ5 with 6 and 8 objectives were especially low. We thought it would be interesting to see if we could improve on those results by optimizing NSGA-II and seeing if the modified optimizer gets on average a better hypervolume.
+I instead focused on optimizing GAs that optimized DTLZ5 with 2, 4, 6, and 8 objectives with 10 decisions. From the last homework it was clear to see that DTLZ5 with 2, 4, 6 and 8 all had varying degrees of success when it comes to obtaining maximal hyper volumes. DTLZ5 with 6 and 8 objectives were especially low. It would be interesting to see if the initial results could be improved upon by optimizing NSGA-II and seeing if the modified optimizer gets on average a better hypervolume.
 
 Our DE that optimizes NSGA-II has the following parameters:
 * 30% Crossover Rate
