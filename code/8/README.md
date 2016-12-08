@@ -105,7 +105,7 @@ DTLZ5 can be used with any number of objectives and decisions. The pareto fronti
 
 DTLZ7 is a model created in order to test the potential for optimizers to find and maintain several distinct disjointed pareto-optimal solutions. As you can see, when using two objectives, x1 and x2, the pareto-optimal regions are spread out quite a bit. With DTLZ7 it is possible to implement the model using any number of objectives and any number of decisions.
 
-### Result Analysis
+### Performance Measures and Statistics
 #### Hypervolume
 Hypervolume is volume with in a pareto frontier. Essentially, hypervolume increases as the pareto frontier approaches closer to its overall goal.<sup>[5]</sup>.
 
