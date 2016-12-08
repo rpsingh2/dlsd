@@ -2,7 +2,7 @@
 
 ## Abstract
 NSGA-II is an extremely popular algorithm mused in mutli-objective optimizations problems. NSGA-II is known for its fast selection operator that uses a quick non-domination sort of the frontiers in a population. With this experiment, the results of two types of secondary sorting methods were explored. 
-With this setup we tried to explore the difference between using binary domination with cuboid distances and continuous domination as two different types of secondary sorts. Using the DTLZ family of models we were able to obtain results about each of the final populations of points evolved using NSGA-II with each secondary selection method. It turns out neither method has any particualr advantage in terms of impact on hypervolume regardless of the number of objectives used.
+With this setup I tried to explore the difference between using binary domination with cuboid distances and continuous domination as two different types of secondary sorts. Using the DTLZ family of models I was able to obtain results about each of the final populations of points evolved using NSGA-II with each secondary selection method. It turns out neither method has any particualr advantage in terms of impact on hypervolume regardless of the number of objectives used.
 
 
 ## Introduction
